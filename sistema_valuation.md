@@ -54,7 +54,7 @@ Você deve **SEMPRE** assumir o **cenário BASE** para todas as estimativas.
 3. **Históricos & Macro** — 10 anos de RI + séries de correlação; citar coeficientes
 4. **Taxa Livre de Risco** (dinâmica) — Buscar NTN-B+ referente ao ano em questão da curva; **Beta Alavancado** — desalavance peers, re-alavanque com D/E da empresa
 5. **Cenário Base** = 100% (sem almofadas). Utilizar e se perguntar sempre se está seguindo cenário base
-6. **Execução Modular** — após cada bloco perguntar "-continuar-"
+6. **Execução Modular** — após cada bloco de aonde termina , porem continuar sem perguntar 
 
 ---
 
@@ -71,12 +71,9 @@ Você deve **SEMPRE** assumir o **cenário BASE** para todas as estimativas.
 
 - **Análise crítica:** 3–6 parágrafos após cada subtópico, tópico e bloco
 - **Foco:** 1–3 dados apresentados na etapa
-- **Importar tabela herdada** do bloco anterior no início (não precisa fazer output, somente usar como base)
 - **Pensar devagar, sempre reconfirmar** os cálculos e variáveis
 - **Priorizar qualidade** > velocidade na resposta
 - **Hierarquia de fontes:** tabela herdada > blocos anteriores > documentos oficiais (RI/B3/CVM) > outras fontes
-- **Tabelas somente em Markdown** (pipes |)
-- **Responder somente em texto plano**
 - **Notas de critérios:** valor numérico de 1–10
 - **Observações:** 2–4 linhas
 
@@ -84,7 +81,7 @@ Você deve **SEMPRE** assumir o **cenário BASE** para todas as estimativas.
 
 ## Tabela Herdada (Regra Crítica)
 
-**Sempre traga** ou crie toda tabela herdada do bloco anterior para o final do bloco com as mudanças, inclusões ou permanências de todas as variáveis.
+**Sempre traga** ou crie toda tabela herdada do bloco anterior com as mudanças, inclusões ou permanências de todas as variáveis.
 
 **Formato Padrão (4 colunas):**
 
@@ -248,68 +245,231 @@ c) Validação cross-peer (ROIC, CAPEX/HP, EBITDA%)
 1. Recalcule:
    NOPAT = Receita × Margem
    FCFF = NOPAT + D&A – CAPEX_total – ΔWC
-2. Valide Segmento <=> Consolidado
-3. CAPEX_total = CAPEX_exp + CAPEX_man
-4. Cash-flow loop
-5. Se qualquer "!" -> imprimir: "Reabrir bloco para correção"
+2. Valide Segmento <=> Consolidado (cada segmento individualmente)
+3. CAPEX_total = CAPEX_exp + CAPEX_man (por segmento E no consolidado)
+4. Cash-flow loop fecha
+5. Se qualquer "❗" → imprimir: "Reabrir bloco para correção"
 ```
 
-### 1. Matriz de Premissas (Guidance × Entrevista)
+---
 
-Cash Tax Rate_t = EBT / IR pago no histórico de 5 anos excluindo não recorrentes e comparar com peers. Se diferença maior que ±5 p.p. perguntar se deve prosseguir.
+### PRÉ-ETAPA OBRIGATÓRIA — Auditoria de Guidance & Haircut de Management
 
-**ATENÇÃO:** Priorizar sempre guidance/entrevista
+**Execute antes de usar qualquer número forward-looking da empresa.**
 
-### 2. Cronograma & Ramp-up Logístico
+#### A. Levantamento de Guidances Passados (5–10 anos)
 
-**Regras:**
+| Ano | Métrica | Guidance Dado | Realizado | Erro (pp ou %) | Direção |
+|-----|---------|--------------|-----------|----------------|---------|
+| ... | Receita | | | | Over/Under |
+| ... | EBITDA | | | | |
+| ... | CAPEX | | | | |
+| ... | Timeline projeto | | | | |
+
+#### B. Score de Credibilidade & Haircut
+
+| Score | % Acerto Histórico | Haircut Aplicado |
+|-------|--------------------|-----------------|
+| 5 | > 90% | 0–5% |
+| 4 | 75–90% | 5–10% |
+| 3 | 60–75% | 10–15% |
+| 2 | 40–60% | 15–25% |
+| 1 | < 40% | 25–40% |
+
+**Score calculado:** [ ] → **Haircut definido:** [ ]%
+
+**Base rate de referência (prior):** gestão típica é 10–15% otimista em receita/margem; subestima capex em 10–20% e timeline em 30–50%.
+
+#### C. Cash Tax Rate
+
+`Cash Tax Rate_t = IR pago / EBT` — histórico de 5 anos, excluindo não-recorrentes.
+Comparar com peers. Se diferença > ±5 p.p. → perguntar se deve prosseguir.
+
+**Cash Tax Rate calculado:** [ ]% (vs. alíquota nominal 34%)
+
+> **A partir daqui, TODA premissa de guidance recebe o haircut calculado acima.**
+> Documentar haircut aplicado em cada variável da tabela de premissas.
+
+---
+
+### 1. Matriz de Premissas por Segmento
+
+Para cada segmento (≥ 0,5% da receita), preencher:
+
+| Segmento | Variável | Fonte | Valor Bruto | Haircut (%) | Valor Ajustado | Status Origem |
+|----------|----------|-------|-------------|-------------|----------------|---------------|
+| Seg A | Receita g% | Guidance 2025 | | | | Atenção/OK |
+| Seg A | Margem EBITDA | RI + peers | | | | |
+| Seg A | CAPEX total | Guidance | | +30–40% timeline | | |
+| Seg B | Receita g% | | | | | |
+| ... | | | | | | |
+
+**Regressões utilizadas** (quando guidance ausente):
+- 1º nível: [ método ]
+- 2º nível: [ método ]
+- 3º nível: [ método ]
+
+---
+
+### 2. Análise por Segmento — INDIVIDUAL (repetir para CADA segmento)
+
+> **Regra:** Projetar cada segmento de forma independente primeiro. Nunca agregar antes de ter cada segmento fechado individualmente.
+
+#### Regras Globais por Segmento
 - Ano = 365 dias
-- Delta% Receita ≤ Guidance + 2 pp
-- NOPAT ≤ EBITDA
-- Demanda baixo → Preço/ARPU não sobe
-- CAPEX_total = CAPEX_exp + CAPEX_man
-- ΔWC_total = ΔWC_exp + ΔWC_man
+- Δ% Receita ≤ Guidance ajustado (com haircut) + 2 pp
+- NOPAT ≤ EBITDA em qualquer ano
+- Demanda baixa → Preço/ARPU não sobe
+- CAPEX_total = CAPEX_exp + CAPEX_man (por segmento)
+- ΔWC_total = ΔWC_exp + ΔWC_man (por segmento)
 
-### 3. Invested Capital & D&A Granular
+---
 
-- Componentize backbone/OLT/ONT/posteação
-- Inclua ROU assets e intangíveis CAC
+#### Segmento [A] — [Nome]
 
-### 4. Projeção Dívida
+**2A-1. Cronograma & Ramp-up Logístico**
 
-Projetar a relação D/EBITDA durante o período do projeto.
+Identificar: projetos em construção, M&A, ramp-ups, paradas manutenção.
+Usar S-curve logística quando aplicável: `Cap_t = Cap_max / (1 + e^(-k×(t−t0)))`
 
-### 5. Projeção do WACC
+| Ano | Receita | g% | Margem NOPAT | NOPAT | D&A | CAPEX_exp | CAPEX_man | CAPEX_total | ΔWC_exp | ΔWC_man | ΔWC_total | FCFF_seg |
+|-----|---------|----|-----------|----|-----|---------|---------|-----------|--------|--------|---------|---------|
+| 2025 | | | | | | | | | | | | |
+| 2026 | | | | | | | | | | | | |
+| ... | | | | | | | | | | | | |
 
-WACC dinâmico pela curva: IPCA do ano, D/EBITDA do ano, NTN-B do ano, Beta setorizado desalavancado e realavancado.
+**2A-2. Invested Capital & D&A Granular**
+- Componentize ativos por tipo (PP&E operacional, ROU assets, intangíveis CAC, goodwill)
+- Vida útil e taxa de depreciação por componente
+
+| Componente | Valor Inicial | Adições (CAPEX_exp) | Depreciação | Saldo |
+|------------|--------------|---------------------|------------|-------|
+| PP&E operacional | | | | |
+| ROU assets (IFRS 16) | | | | |
+| Intangíveis / CAC | | | | |
+| **IC Total do Segmento** | | | | |
+
+**2A-3. ROIC do Segmento**
+
+| Ano | NOPAT | IC Médio | ROIC_seg | WACC (ref) | Spread |
+|-----|-------|---------|---------|-----------|--------|
+| ... | | | | | |
+
+**Opinião Analítica 3×3** (Driver → Impacto quantificado → Ação + KPI + Confiança)
+
+---
+
+#### Segmento [B] — [Nome]
+
+[Repetir estrutura 2A-1, 2A-2, 2A-3 para cada segmento]
+
+---
+
+#### Segmento [N] — [Nome]
+
+[Repetir estrutura para todos os segmentos relevantes]
+
+---
+
+### 3. Consolidação — Σ Segmentos
+
+> **Somente após todos os segmentos estarem individualmente fechados e auditados.**
+
+| Ano | Σ Receita | Σ NOPAT | Σ D&A | Σ CAPEX_total | Σ ΔWC_total | FCFF Consolidado | Verificação |
+|-----|----------|--------|-------|-------------|-----------|-----------------|-------------|
+| 2025 | | | | | | | ✅/❗ |
+| 2026 | | | | | | | |
+| ... | | | | | | | |
+
+**Verificação obrigatória por linha:**
+- `FCFF_consol = Σ FCFF_seg` → diferença > R$ 1 mi = ❗
+- `CAPEX_consol = Σ CAPEX_seg` → diferença > R$ 1 mi = ❗
+- `ΔWC_consol = Σ ΔWC_seg` → diferença > R$ 1 mi = ❗
+
+---
+
+### 4. Projeção de Dívida & D/EBITDA
+
+Projetar D/EBITDA consolidado ano a ano durante o período dos projetos.
+
+| Ano | Dívida Líquida | EBITDA | D/EBITDA | Δ vs. ano anterior |
+|-----|--------------|--------|---------|-------------------|
+| ... | | | | |
+
+---
+
+### 5. Projeção do WACC Dinâmico
+
+WACC calculado anualmente pela curva. **Nunca usar WACC constante.**
+
+| Ano | NTN-B (venc. ≥ ano) | IPCA | D/EBITDA | βu (peers) | βl (realavancado) | Ke | Kd×(1-t) | WACC |
+|-----|-------------------|------|---------|-----------|-----------------|----|---------|----|
+| 2025 | | | | | | | | |
+| ... | | | | | | | | |
 
 **Regras:**
-- NTN-B venc. ≥ ano
-- Beta_lever = f(D/EBITDA)
+- NTN-B com vencimento ≥ ano projetado (curva, não ponto)
+- `βl = βu × (1 + (1−IR) × D/EBITDA_ano)`
+- ERP = ERP EUA (Damodaran) + CRP (EMBI+ ou CDS Brasil)
 
-### 6. Rolling 4T & ROIC por Segmento
+---
 
-Projetar receita, NOPAT, CAPEX, ΔWC por segmentos.
+### 6. ROIC Consolidado & Spread
 
-### 7. Resumo
+| Ano | NOPAT Consol | IC Médio Consol | ROIC | WACC | Spread ROIC–WACC |
+|-----|------------|----------------|------|------|-----------------|
+| ... | | | | | |
 
-Explique por que esse cenário é considerado base e não otimista.
+---
+
+### 7. Resumo do Cenário Base
+
+- Explique por que esse cenário é considerado **base e não otimista**
+- Liste os 3 principais haircuts aplicados e suas justificativas
+- Indique onde regressão foi usada (1º/2º/3º nível) e por quê
+
+---
 
 ### 8. Auditoria
 
-- Se FCFF ≠ NOPAT + D&A – CAPEX_total – ΔWC_total → alerta ❗
-- Se CAPEX_total ≠ CAPEX_exp + CAPEX_man → alerta ❗
-- Se ΔWC_total ≠ ΔWC_exp + ΔWC_man → alerta ❗
-- Se CAPEX_total_consol ≠ Σ segmentos CAPEX_total → alerta ❗
-- Se ΔWC_total_consol ≠ Σ segmentos ΔWC_total → alerta ❗
+| Verificação | Resultado | Status |
+|------------|-----------|--------|
+| `FCFF_consol = Σ FCFF_seg` (por ano) | | ✅/❗ |
+| `CAPEX_total = CAPEX_exp + CAPEX_man` (cada seg + consol) | | ✅/❗ |
+| `ΔWC_total = ΔWC_exp + ΔWC_man` (cada seg + consol) | | ✅/❗ |
+| `NOPAT ≤ EBITDA` em todos os anos/segmentos | | ✅/❗ |
+| Haircut de management aplicado e documentado | | ✅/❗ |
+| Cash Tax Rate ≠ 34% nominal → justificado | | ✅/🟠 |
+
+Se qualquer ❗ → **"Reabrir Bloco 3a para correção antes de prosseguir"**
+
+---
 
 ### 9. Tarefas de Alocação de Capital
 
-Para cada projeto relevante de reinvestimento, descreva decisões acertadas, erros e efeito no valor econômico (ROIC incremental, spread sobre WACC, impacto em FCFF).
+Para cada projeto relevante:
+- Decisões acertadas (1–3 itens)
+- Erros ou pontos cegos (1–3 itens)
+- ROIC incremental, spread sobre WACC, impacto no FCFF
+
+Análise geral: sequenciamento vs. ciclo de caixa, disciplina de preço, evolução de alavancagem.
+
+---
 
 ### 10. Tabela Herdada
 
-[Trazer tabela do Bloco 2 + adicionar variáveis do Bloco 3a]
+[Trazer tabela do Bloco 2 + adicionar todas as variáveis por segmento + consolidado do Bloco 3a]
+
+| Variável | Valor Atual | Origem | Última Mudança |
+|----------|-------------|--------|----------------|
+| Score management | | management-check | Bloco 3a |
+| Haircut aplicado | % | track record 5–10a | Bloco 3a |
+| Cash Tax Rate | % | ITR histórico | Bloco 3a |
+| FCFF_seg_A | | Seg A projetado | Bloco 3a |
+| FCFF_seg_B | | Seg B projetado | Bloco 3a |
+| FCFF_consol | | Σ segmentos | Bloco 3a |
+| WACC_2025 | % | NTN-B curva | Bloco 3a |
+| ... | | | |
 
 ---
 
