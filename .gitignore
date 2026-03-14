@@ -1,0 +1,14 @@
+# Arquivos originais Word (conteúdo migrado para .md)
+*.docx
+*.doc
+*.xlsx
+*.xls
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporários
+*.tmp
+~$*
