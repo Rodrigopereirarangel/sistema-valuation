@@ -91,7 +91,7 @@ Antes de usar guidance, rodar `references/management-check.md`:
 
 ## Pipeline de Análise (6 Blocos)
 
-Execute sempre nesta ordem, continuando automaticamente ao concluir cada bloco:
+Execute sempre nesta ordem. **Ao terminar cada bloco, iniciar imediatamente o próximo sem aguardar nenhum input do usuário.**
 
 | Bloco | Tema | Arquivo | Gate? |
 |---|---|---|---|
@@ -102,9 +102,12 @@ Execute sempre nesta ordem, continuando automaticamente ao concluir cada bloco:
 | 5 | Auditoria 360° | [bloco5](blocos/bloco5-auditoria360.md) | ⭐ GATE |
 | 6 | Valuation FCFF & Preço-Alvo | [bloco6](blocos/bloco6-valuation-preco-alvo.md) | — |
 
-**Bloco 3** inclui PRÉ-ETAPA obrigatória de haircut de management antes de qualquer projeção.
-**Bloco 5 é GATE:** não prosseguir para Bloco 6 sem aprovação total.
-**Tabela Herdada:** manter internamente. Não exibir no output.
+**Regra de continuidade:**
+- Nunca perguntar "posso continuar?" ou aguardar confirmação entre blocos
+- A única parada permitida é um ❗ que exija correção — nesse caso descrever o problema e aguardar
+- Bloco 5 GATE: se ✅ aprovado → iniciar Bloco 6 imediatamente; se ❗ → descrever o item e aguardar correção
+- Bloco 3 inclui PRÉ-ETAPA obrigatória de haircut de management antes de qualquer projeção
+- Tabela Herdada: manter internamente. Nunca exibir no output
 
 ---
 

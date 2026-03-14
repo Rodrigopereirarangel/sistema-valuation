@@ -49,7 +49,7 @@ Sempre assumir o **cenário BASE**:
 3. **Histórico** — 10 anos de RI + séries de correlação; citar coeficientes
 4. **Taxa livre de risco** — NTN-B com vencimento ≥ ano projetado (curva, não ponto)
 5. **Beta** — desalavancado de peers, realavancado com D/EBITDA da empresa no ano
-6. **Execução modular** — ao concluir cada bloco, continuar automaticamente para o próximo
+6. **Execução contínua** — ao concluir cada bloco, iniciar imediatamente o próximo sem aguardar input. Parar apenas em ❗
 
 ---
 

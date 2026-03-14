@@ -48,7 +48,7 @@ Base rate de referência (prior): gestão típica erra +10–15% em receita/marg
 ### C. Cash Tax Rate
 
 `Cash Tax Rate = IR pago / EBT` — histórico 5 anos, excluindo não-recorrentes.
-Se diferença vs. peers > ±5 p.p. → perguntar antes de prosseguir.
+Se diferença vs. peers > ±5 p.p. → registrar como 🟠, documentar justificativa e continuar.
 
 **Cash Tax Rate calculado:** [ ]% (vs. 34% nominal)
 
