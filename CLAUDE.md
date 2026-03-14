@@ -91,16 +91,20 @@ Antes de usar guidance, rodar `references/management-check.md`:
 
 ## Pipeline de Análise (6 Blocos)
 
-Execute sempre nesta ordem, confirmando "–continuar–" entre blocos:
+Execute sempre nesta ordem, continuando automaticamente ao concluir cada bloco:
 
-| Bloco | Tema | Arquivo |
-|---|---|---|
-| 1 | Modelo de Negócio | [bloco1](blocos/bloco1-modelo-negocio.md) |
-| 2 | Moat & Concorrência | [bloco2](blocos/bloco2-moat-concorrencia.md) |
-| 3a | Reinvestimento & WACC | [bloco3a](blocos/bloco3a-reinvestimento.md) |
-| 3b | Custo de Capital (cont.) | [bloco3b](blocos/bloco3b-custo-capital.md) |
-| 3c | Auditoria 360° | [bloco3c](blocos/bloco3c-auditoria360.md) |
-| 5 | Valuation FCFF & Preço-Alvo | [bloco5](blocos/bloco5-valuation-preco-alvo.md) |
+| Bloco | Tema | Arquivo | Gate? |
+|---|---|---|---|
+| 1 | Modelo de Negócio | [bloco1](blocos/bloco1-modelo-negocio.md) | — |
+| 2 | Moat · Concorrência · Fade de ROIC | [bloco2](blocos/bloco2-moat-concorrencia.md) | — |
+| 3 | Reinvestimento por Segmento | [bloco3](blocos/bloco3-reinvestimento-segmentos.md) | — |
+| 4 | Custo de Capital & Cash-Sweep | [bloco4](blocos/bloco4-custo-capital-cashsweep.md) | — |
+| 5 | Auditoria 360° | [bloco5](blocos/bloco5-auditoria360.md) | ⭐ GATE |
+| 6 | Valuation FCFF & Preço-Alvo | [bloco6](blocos/bloco6-valuation-preco-alvo.md) | — |
+
+**Bloco 3** inclui PRÉ-ETAPA obrigatória de haircut de management antes de qualquer projeção.
+**Bloco 5 é GATE:** não prosseguir para Bloco 6 sem aprovação total.
+**Tabela Herdada:** manter internamente. Não exibir no output.
 
 ---
 
@@ -180,7 +184,7 @@ Emita "❗" se qualquer condição abaixo falhar:
 
 ---
 
-## Após o Bloco 5 — Stress Test Obrigatório
+## Após o Bloco 6 — Stress Test Obrigatório
 
 Antes de emitir recomendação final, executar `references/stress-test.md`:
 1. **Via Negativa**: listar o que tornaria a tese errada (curto/médio/longo prazo)
