@@ -88,17 +88,30 @@ Fade Rate = ln(2) / Half-life
 
 ---
 
-## Mix de Alocação de Capital — S&P 500 (média 2000–2024)
+## Mix de Alocação de Capital — Pares Maduros (referência para cash-sweep)
 
-| Uso | % do FCF |
-|-----|----------|
-| Capex | 30–35% |
-| M&A | 15–20% |
-| Buybacks | 25–30% |
-| Dividendos | 15–20% |
+> "Pares maduros" = empresas do mesmo setor, ≥ 10 anos listadas, > 40% payout (dividendos + buybacks) nos últimos 3 anos.
+
+| Uso | % do FCF — Referência Pares Maduros |
+|-----|-------------------------------------|
+| Capex manutenção | 15–25% |
+| Capex expansão orgânica | 5–15% |
+| M&A | 5–15% |
+| Buybacks | 20–35% |
+| Dividendos | 20–30% |
 | Acúmulo de Caixa | 5–10% |
 
-**Uso**: referência para calibrar payout e buyback no cash-sweep (Bloco 3b).
+**Critério de seleção de pares maduros:**
+- ≥ 10 anos listados em bolsa (BR ou exterior)
+- > 40% payout (dividendos + buybacks) nos últimos 3 anos
+- Mesmo setor ou setor comparável
+- D/EBITDA estável nos últimos 3 anos (convergido)
+- Fontes: Economatica, Bloomberg, Damodaran (páginas setoriais)
+
+**Uso no modelo:**
+- Definir D/EBITDA alvo para o período de cash-sweep (Bloco 3b)
+- Calibrar % de cash-sweep (60–80% do FCFF) em linha com pares
+- Referência para payout ratio no fade terminal (Bloco 3b, Bloco 5)
 
 ---
 
