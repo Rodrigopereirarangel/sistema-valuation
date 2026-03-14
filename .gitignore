@@ -1,5 +1,9 @@
 # Arquivos originais Word (conteúdo migrado para .md)
 *.docx
+*_extracted.txt
+
+# Claude local settings
+.claude/
 *.doc
 *.xlsx
 *.xls
