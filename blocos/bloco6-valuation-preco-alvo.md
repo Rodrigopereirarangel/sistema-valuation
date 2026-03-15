@@ -88,21 +88,39 @@ Preço-Alvo = Equity Value / Nº Ações (diluído)
 
 ---
 
-## 4. ERP Implícito (ERP*)
+## 4. ERP Implícito (ERP*) ❗ OBRIGATÓRIO — não pode ser pulado
+
+> **Esta seção é obrigatória e não pode ser omitida.** O ERP* é o termômetro de quanto o mercado está exigindo vs. o modelo. Sem ele, a análise não está completa.
 
 ```
-ERP* = ERP que, mantendo todas as outras premissas,
-       iguala o Preço-Alvo ao Preço Atual de mercado.
+ERP* = ERP que, mantendo todas as outras premissas fixas,
+       iguala o Equity Value/Ação ao Preço Atual de mercado.
+
+Procedimento:
+1. Fixar: FCFF_1..10, VT (g e ROIC_terminal), Dívida Líquida, Nº Ações, NTN-B exata, βl, Kd
+2. Iterar ERP até: Equity Value / Nº Ações = Preço Atual de mercado
+3. ERP* é o valor que fecha essa equação
+4. WACC* = NTN-B_real + IPCA + βl × ERP*
 
 Δ ERP = ERP* − ERP_base usado no modelo
 ```
 
 | Variável | Valor |
 |----------|-------|
-| ERP base usado | % |
-| ERP implícito (ERP*) | % |
-| Δ ERP (pp) | |
-| Interpretação | mercado exige prêmio maior/menor? |
+| Preço Atual de mercado (R$) | |
+| ERP base usado no modelo | % |
+| NTN-B real usada (vencimento exato, taxa ANBIMA) | % |
+| βl terminal | |
+| **ERP implícito (ERP*)** | % |
+| **WACC* implícito** | % |
+| Δ ERP vs. base (pp) | |
+| ERP histórico Brasil (Damodaran, ref. ano atual) | % |
+| ERP* vs. ERP histórico — sinal | acima → ação cara ou risco elevado / abaixo → barata ou mercado otimista |
+
+**Análise narrativa obrigatória (mínimo 2 parágrafos):**
+- O que o ERP* revela sobre o que o mercado está precificando implicitamente?
+- O ERP* é plausível dado o ambiente macro atual (NTN-B, EMBI+, ciclo de juros)?
+- Confrontar ERP* com ERP de mercados emergentes (Damodaran) e com o CRP atual do Brasil.
 
 *Opinião Analítica 3×3*
 

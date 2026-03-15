@@ -6,7 +6,7 @@
 
 - **NTN-B** (Tesouro IPCA+) como proxy de taxa real livre de risco
 - Usar a NTN-B com vencimento **igual ou superior** ao ano projetado (curva, não ponto)
-- Para valor terminal: NTN-B mais longa disponível (10–40 anos)
+- Para valor terminal: NTN-B +10
 - **Selic**: âncora de custo de oportunidade para investidor doméstico
 - Fonte: Tesouro Direto (tesourodireto.gov.br) ou Anbima
 
@@ -32,6 +32,7 @@
 **WACC nominal vs. real:**
 - Projetar em termos nominais (moeda corrente) com WACC nominal
 - `WACC_real = (1 + WACC_nominal) / (1 + IPCA) − 1`
+- Calcular WACC real dinamico sempre
 
 ---
 
@@ -96,13 +97,33 @@
 
 ## Curva de Juros Brasileira
 
-Para WACC dinâmico por ano:
-1. Acessar curva de juros reais (NTN-B por vencimento)
-2. Extrair taxa NTN-B para cada ano projetado
-3. Ajustar Beta e D/EBITDA para cada ano
-4. Recalcular WACC para cada ano (não usar WACC constante)
+> **❗ REGRA INVIOLÁVEL — NTN-B:** Usar EXCLUSIVAMENTE as taxas publicadas pelo ANBIMA para cada vencimento específico. PROIBIDO aproximar, estimar, arredondar ou interpolar sem mostrar cálculo explícito.
 
-Fonte: Anbima (anbima.com.br > Mercados > Taxas de Referência)
+Para WACC dinâmico por ano:
+1. Acessar ANBIMA → Mercados → Taxas de Referência → Títulos Públicos → NTN-B
+2. Baixar a tabela de vencimentos do dia da análise (registrar data)
+3. Para cada ano projetado, usar a NTN-B com vencimento **igual ou imediatamente superior**
+4. Se interpolação necessária: `Rf_ano = Rf_A + (Rf_B − Rf_A) × (ano − venc_A) / (venc_B − venc_A)` — mostrar valores
+5. Ajustar Beta e D/EBITDA para cada ano (nunca constante)
+6. Recalcular WACC para cada ano
+
+**Fonte primária obrigatória:** ANBIMA — anbima.com.br > Mercados > Taxas de Referência
+**Fonte alternativa (verificação):** Tesouro Direto — tesourodireto.gov.br > Consultar Taxas
+
+**Vencimentos NTN-B disponíveis (referência típica — verificar sempre data atual):**
+| Vencimento | Código | Periodicidade cupom |
+|------------|--------|---------------------|
+| 15/08/2026 | NTN-B | Semestral |
+| 15/05/2027 | NTN-B | Semestral |
+| 15/08/2028 | NTN-B | Semestral |
+| 15/08/2030 | NTN-B | Semestral |
+| 15/05/2035 | NTN-B | Semestral |
+| 15/08/2040 | NTN-B | Semestral |
+| 15/05/2045 | NTN-B | Semestral |
+| 15/08/2050 | NTN-B | Semestral |
+| 15/08/2055 | NTN-B | Semestral |
+
+> Para o valor terminal: usar NTN-B com vencimento mais longo disponível (≥ 2045).
 
 ---
 

@@ -7,6 +7,59 @@
 
 ---
 
+## 0. Estrutura Completa da Dívida (por Instrumento) ❗ OBRIGATÓRIO
+
+> Executar ANTES de qualquer cálculo de WACC ou cash-sweep. O Kd real saí daqui.
+> **Proibido usar custo de dívida agregado sem mapear cada instrumento individualmente.**
+
+### 0A. Inventário de Instrumentos de Dívida
+
+Para cada instrumento (debêntures, CRI, CRA, CCB, notas, BNDES, leasing financeiro, etc.):
+
+| Instrumento | Código/Série | Saldo (R$ mi) | Indexador | Spread/Taxa | Taxa All-in | Vencimento | Prazo Restante (anos) | Amortização |
+|-------------|-------------|--------------|---------|-------------|------------|------------|----------------------|-------------|
+| Debênture 1 | | | IPCA+ / CDI+ / pré | | % a.a. | dd/mm/aaaa | | bullet/amort |
+| Debênture 2 | | | | | | | | |
+| CRI | | | | | | | | |
+| BNDES | | | TJLP / IPCA | | | | | |
+| Leasing IFRS 16 | | | | | | | | |
+| **Total** | | | | | | | | |
+
+**Fonte obrigatória:** Notas Explicativas (NE) do último ITR/DFP publicado. Citar nota e página.
+
+### 0B. Kd Ponderado Real
+
+```
+Kd_bruto = Σ (Saldo_i × Taxa_all-in_i) / Σ Saldo_i
+Kd_líquido = Kd_bruto × (1 − Cash Tax Rate)
+```
+
+| Métrica | Valor |
+|---------|-------|
+| Kd bruto ponderado | % a.a. |
+| Cash Tax Rate aplicado | % |
+| **Kd líquido (para WACC)** | % a.a. |
+| Prazo médio ponderado da dívida | anos |
+| % dívida indexada IPCA+ | % |
+| % dívida indexada CDI+ | % |
+| % dívida prefixada | % |
+
+### 0C. Risco de Refinanciamento
+
+| Ano | Vencimentos (R$ mi) | % da Dívida Total | Cobertura (FCFF/Vencimentos) | Risco |
+|-----|--------------------|--------------------|-------------------------------|-------|
+| 2025 | | | | Baixo/Médio/Alto |
+| 2026 | | | | |
+| 2027 | | | | |
+| 2028 | | | | |
+| 2029 | | | | |
+
+🟠 se vencimento concentrado > 30% da dívida em 1 ano sem geração de caixa suficiente.
+
+*Opinião Analítica 3×3 — Driver → Impacto quantificado → Ação + KPI + Confiança*
+
+---
+
 ## 1. Cash-Sweep & Redução de Alavancagem
 
 Alocar 60–80% do FCFF para amortização de dívida e/ou distribuição até D/EBITDA atingir nível de pares maduros.
