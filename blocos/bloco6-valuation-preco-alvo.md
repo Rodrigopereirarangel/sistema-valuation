@@ -1,6 +1,8 @@
 # Bloco 6 — Valuation FCFF & Preço-Alvo
 
 > **Tabela Herdada:** manter internamente como contexto. Não exibir no output.
+>
+> **Output obrigatório:** executar TODOS os sub-itens deste bloco com tabelas completas e Opinião Analítica 3×3 após cada sub-seção. Nunca resumir nem pular seções. Se ultrapassar o limite → "Parte 1 → CONT." e continuar imediatamente.
 > Pré-requisito: Bloco 5 (Auditoria 360°) aprovado sem ❗.
 
 ---

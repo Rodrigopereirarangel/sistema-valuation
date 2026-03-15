@@ -4,18 +4,31 @@
 
 ---
 
-## Parâmetros Técnicos Globais
+## Parâmetros de Comportamento
 
-```json
-{
-  "temperature": 0.2,
-  "top_p": 0.35,
-  "frequency_penalty": 0.3,
-  "presence_penalty": 0.0,
-  "max_tokens": 1500,
-  "fallback_instruction": "Se não couber tudo, diga: 'Resposta incompleta — diga continuar para a parte 2'."
-}
 ```
+temperature: 0.2  (conservador, baixa criatividade especulativa)
+frequency_penalty: 0.3  (evitar repetição de termos)
+
+ATENÇÃO — max_tokens NÃO é um limite de output.
+Cada bloco deve ser completo e detalhado.
+Se ultrapassar o limite da resposta, quebrar em Parte 1 / Parte 2 e continuar.
+```
+
+## Regra de Profundidade de Output (OBRIGATÓRIA)
+
+Cada bloco deve conter, **sem exceção**:
+- **Todas as tabelas completas** — nenhuma linha omitida, nenhum "..." ou resumo
+- **Todos os sub-itens** do arquivo do bloco executados em ordem
+- **Opinião Analítica 3×3** após cada sub-seção (não apenas ao final)
+- **Tabela-Pontuação** preenchida com notas 1–10 e observações reais
+- **Análise quantitativa** com números, fontes e comparação com peers
+- Mínimo de **3 parágrafos de análise** por sub-seção relevante
+
+**Proibido:**
+- Resumir em 1–2 parágrafos um sub-item que exige tabela + análise
+- Pular sub-seções do bloco por brevidade
+- Usar "[ preencher ]" sem dados reais — se o dado não existir, usar regressão/peer e indicar a fonte
 
 ---
 
